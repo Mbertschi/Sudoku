@@ -1,0 +1,914 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Sudoku.Converters"
+             xmlns:behaviors="clr-namespace:Juventus.Sudoku"
+             mc:Ignorable="d"
+             x:Class="Sudoku.MainPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
+            <Style x:Key="Entry" TargetType="Entry">
+                <Setter Property="Text" Value="Empty"/>
+                <Setter Property="BackgroundColor" Value="Green"/>
+                <Setter Property="FontSize" Value="20"/>
+            </Style>
+            <Style x:Key="SudokuEntry" TargetType="Entry" BasedOn="{StaticResource Entry}">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="Green"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid Margin="2,1,1,2" ColumnSpacing="1" RowSpacing="1" BackgroundColor="Black">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Label
+            Grid.Row="0" Grid.Column="0"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            VerticalTextAlignment="Center"
+            HorizontalTextAlignment="Center"
+            Grid.ColumnSpan="3" Grid.RowSpan="1"
+            Text="Welcome to Sudoku"
+            FontSize="Large"
+            BackgroundColor="Cyan"
+            TextColor="Black">
+        </Label>
+
+        <Grid Margin="1,1,1,1"  ColumnSpacing="1" RowSpacing="1" Grid.Row="1" Grid.Column="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <Entry Text="{Binding Nummer1}" Grid.Row="0" Grid.Column="0"
+                   Style="{StaticResource SudokuEntry}"
+                   Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly1}"
+                   TextColor="{Binding TextColor1}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="1" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer2}"  Grid.Row="0" Grid.Column="1"
+                   Style="{StaticResource SudokuEntry}"
+                   Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly2}"
+                   TextColor="{Binding TextColor2}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="2" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer3}" Grid.Row="0" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+                Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly3}"
+                   TextColor="{Binding TextColor3}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="3" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer4}" Grid.Row="1" Grid.Column="0" 
+                    Style="{StaticResource SudokuEntry}"
+                   Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly4}"
+                   TextColor="{Binding TextColor4}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="4" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer5}" Grid.Row="1" Grid.Column="1"
+                   Style="{StaticResource SudokuEntry}"
+                   Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly5}"
+                   TextColor="{Binding TextColor5}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="5" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer6}" Grid.Row="1" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+                    Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly6}"
+                   TextColor="{Binding TextColor6}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="6" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer7}" Grid.Row="2" Grid.Column="0"
+               Style="{StaticResource SudokuEntry}"
+                    Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly7}"
+                   TextColor="{Binding TextColor7}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="7" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer8}" Grid.Row="2" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+                    Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly8}"
+                   TextColor="{Binding TextColor8}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="8" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer9}" Grid.Row="2" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+                    Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly9}"
+                   TextColor="{Binding TextColor9}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="9" />
+                </Entry.Behaviors>
+            </Entry>
+        </Grid>
+        <Grid Margin="1,1,1,1" ColumnSpacing="1" RowSpacing="1" Grid.Row="1" Grid.Column="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Entry Text="{Binding Nummer10}" Grid.Row="0" Grid.Column="0"
+                   Style="{StaticResource SudokuEntry}"
+                    Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly10}"
+                   TextColor="{Binding TextColor10}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="10" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer11}" Grid.Row="0" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+                    Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly11}"
+                   TextColor="{Binding TextColor11}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="11" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer12}" Grid.Row="0" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+                Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly12}"
+                       TextColor="{Binding TextColor12}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="12" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer13}" Grid.Row="1" Grid.Column="0" 
+               Style="{StaticResource SudokuEntry}"
+                 Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly13}"
+                   TextColor="{Binding TextColor13}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="13" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer14}" Grid.Row="1" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+                 Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly14}"
+                   TextColor="{Binding TextColor14}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="14" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer15}" Grid.Row="1" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+                 Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly15}"
+                   TextColor="{Binding TextColor15}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="15" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer16}" Grid.Row="2" Grid.Column="0"
+               Style="{StaticResource SudokuEntry}"
+                Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly16}"
+                   TextColor="{Binding TextColor16}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="16" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer17}" Grid.Row="2" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+               Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly17}"
+                   TextColor="{Binding TextColor17}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="17" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer18}" Grid.Row="2" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+              Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly18}"
+                   TextColor="{Binding TextColor18}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="18" />
+                </Entry.Behaviors>
+            </Entry>
+        </Grid>
+
+        <Grid Margin="1,1,1,1" ColumnSpacing="1" RowSpacing="1" Grid.Row="1" Grid.Column="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Entry Text="{Binding Nummer19}" Grid.Row="0" Grid.Column="0"
+                   Style="{StaticResource SudokuEntry}"
+             Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly19}"
+                   TextColor="{Binding TextColor19}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="19" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer20}" Grid.Row="0" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+              Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly20}"
+                   TextColor="{Binding TextColor20}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="20" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer21}" Grid.Row="0" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+              Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly21}"
+                   TextColor="{Binding TextColor21}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="21" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer22}" Grid.Row="1" Grid.Column="0" 
+               Style="{StaticResource SudokuEntry}"
+             Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly22}"
+                   TextColor="{Binding TextColor22}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="22" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer23}" Grid.Row="1" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+             Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly23}"
+                   TextColor="{Binding TextColor23}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="23" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer24}" Grid.Row="1" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+                                 Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly24}"
+                   TextColor="{Binding TextColor24}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="24" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer25}" Grid.Row="2" Grid.Column="0"
+               Style="{StaticResource SudokuEntry}"
+                                  Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly25}"
+                   TextColor="{Binding TextColor25}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="25" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer26}" Grid.Row="2" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+                                  Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly26}"
+                   TextColor="{Binding TextColor26}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="26" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer27}" Grid.Row="2" Grid.Column="2"
+                    Style="{StaticResource SudokuEntry}"
+               Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly27}"
+                   TextColor="{Binding TextColor27}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="27" />
+                </Entry.Behaviors>
+            </Entry>
+        </Grid>
+
+        <Grid Margin="1,1,1,1" ColumnSpacing="1" RowSpacing="1" Grid.Row="2" Grid.Column="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Entry Text="{Binding Nummer28}" Grid.Row="0" Grid.Column="0"
+                   Style="{StaticResource SudokuEntry}"
+                                     Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly28}"
+                   TextColor="{Binding TextColor28}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="28" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer29}" Grid.Row="0" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+                                 Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly29}"
+                   TextColor="{Binding TextColor29}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="29" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer30}" Grid.Row="0" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+                                Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly30}"
+                   TextColor="{Binding TextColor30}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="30" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer31}" Grid.Row="1" Grid.Column="0" 
+               Style="{StaticResource SudokuEntry}"
+                                   Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly31}"
+                   TextColor="{Binding TextColor31}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="31" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer32}" Grid.Row="1" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+                                  Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly32}"
+                   TextColor="{Binding TextColor32}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="32" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer33}" Grid.Row="1" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+                                  Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly33}"
+                   TextColor="{Binding TextColor33}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="33" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer34}" Grid.Row="2" Grid.Column="0"
+               Style="{StaticResource SudokuEntry}"
+                                Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly34}"
+                   TextColor="{Binding TextColor34}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="34" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer35}" Grid.Row="2" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+                                  Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly35}"
+                   TextColor="{Binding TextColor35}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="35" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer36}" Grid.Row="2" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+                                Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly36}"
+                   TextColor="{Binding TextColor36}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="36" />
+                </Entry.Behaviors>
+            </Entry>
+        </Grid>
+
+        <Grid Margin="1,1,1,1" ColumnSpacing="1" RowSpacing="1" Grid.Row="2" Grid.Column="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Entry Text="{Binding Nummer37}" Grid.Row="0" Grid.Column="0"
+                   Style="{StaticResource SudokuEntry}"
+                                    Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly37}"
+                   TextColor="{Binding TextColor37}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="37" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer38}" Grid.Row="0" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+                                    Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly38}"
+                   TextColor="{Binding TextColor38}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="38" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer39}" Grid.Row="0" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+                                     Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly39}"
+                   TextColor="{Binding TextColor39}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="39" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer40}" Grid.Row="1" Grid.Column="0" 
+               Style="{StaticResource SudokuEntry}"
+                                      Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly40}"
+                   TextColor="{Binding TextColor40}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="40" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer41}" Grid.Row="1" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+                                    Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly41}"
+                   TextColor="{Binding TextColor41}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="41" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer42}" Grid.Row="1" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+                                  Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly42}"
+                   TextColor="{Binding TextColor42}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="42" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer43}" Grid.Row="2" Grid.Column="0"
+               Style="{StaticResource SudokuEntry}"
+                               Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly43}"
+                   TextColor="{Binding TextColor43}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="43" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer44}" Grid.Row="2" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+                                 Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly44}"
+                   TextColor="{Binding TextColor44}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="44" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer45}" Grid.Row="2" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+                            Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly45}"
+                   TextColor="{Binding TextColor45}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="45" />
+                </Entry.Behaviors>
+            </Entry>
+        </Grid>
+
+        <Grid Margin="1,1,1,1" ColumnSpacing="1" RowSpacing="1" Grid.Row="2" Grid.Column="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Entry Text="{Binding Nummer46}" Grid.Row="0" Grid.Column="0"
+                   Style="{StaticResource SudokuEntry}"
+                                Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly46}"
+                   TextColor="{Binding TextColor46}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="46" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer47}" Grid.Row="0" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+                                  Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly47}"
+                   TextColor="{Binding TextColor47}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="47" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer48}" Grid.Row="0" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+                                  Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly48}"
+                   TextColor="{Binding TextColor48}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="48" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer49}" Grid.Row="1" Grid.Column="0" 
+               Style="{StaticResource SudokuEntry}"
+                                      Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly49}"
+                   TextColor="{Binding TextColor49}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="49" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer50}" Grid.Row="1" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+                                   Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly50}"
+                   TextColor="{Binding TextColor50}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="50" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer51}" Grid.Row="1" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+                                   Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly51}"
+                   TextColor="{Binding TextColor51}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="51" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer52}" Grid.Row="2" Grid.Column="0"
+               Style="{StaticResource SudokuEntry}"
+                                   Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly52}"
+                   TextColor="{Binding TextColor52}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="52" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer53}" Grid.Row="2" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+                                 Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly53}"
+                   TextColor="{Binding TextColor53}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="53" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer54}" Grid.Row="2" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+                               Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly54}"
+                   TextColor="{Binding TextColor54}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="54" />
+                </Entry.Behaviors>
+            </Entry>
+        </Grid>
+        <Grid Margin="1,1,1,1" ColumnSpacing="1" RowSpacing="1" Grid.Row="3" Grid.Column="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Entry Text="{Binding Nummer55}" Grid.Row="0" Grid.Column="0"
+                   Style="{StaticResource SudokuEntry}"
+                                  Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly55}"
+                   TextColor="{Binding TextColor55}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="55" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer56}" Grid.Row="0" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+                               Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly56}"
+                   TextColor="{Binding TextColor56}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="56" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer57}" Grid.Row="0" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+                                Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly57}"
+                   TextColor="{Binding TextColor57}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="57" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer58}" Grid.Row="1" Grid.Column="0" 
+               Style="{StaticResource SudokuEntry}"
+                         Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly58}"
+                   TextColor="{Binding TextColor58}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="58" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer59}" Grid.Row="1" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+                                     Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly59}"
+                   TextColor="{Binding TextColor59}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="59" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer60}" Grid.Row="1" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+                                      Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly60}"
+                   TextColor="{Binding TextColor60}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="60" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer61}" Grid.Row="2" Grid.Column="0"
+               Style="{StaticResource SudokuEntry}"
+               Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly61}"
+                   TextColor="{Binding TextColor61}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="61" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer62}" Grid.Row="2" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+                                  Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly62}"
+                   TextColor="{Binding TextColor62}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="62" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer63}" Grid.Row="2" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+                                Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly63}"
+                   TextColor="{Binding TextColor63}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="63" />
+                </Entry.Behaviors>
+            </Entry>
+        </Grid>
+
+        <Grid Margin="1,1,1,1" ColumnSpacing="1" RowSpacing="1" Grid.Row="3" Grid.Column="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Entry Text="{Binding Nummer64}" Grid.Row="0" Grid.Column="0"
+                   Style="{StaticResource SudokuEntry}"
+                                     Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly64}"
+                   TextColor="{Binding TextColor64}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="64" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer65}" Grid.Row="0" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+                                     Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly65}"
+                   TextColor="{Binding TextColor65}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="65" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer66}" Grid.Row="0" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+                                  Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly66}"
+                   TextColor="{Binding TextColor66}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="66" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer67}" Grid.Row="1" Grid.Column="0" 
+               Style="{StaticResource SudokuEntry}"
+               Keyboard="Numeric"
+               IsReadOnly="{Binding ReadOnly67}"
+                   TextColor="{Binding TextColor67}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="67" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer68}" Grid.Row="1" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+                                   Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly68}"
+                   TextColor="{Binding TextColor68}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="68" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer69}" Grid.Row="1" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+                   Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly69}"
+                   TextColor="{Binding TextColor69}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="69" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer70}" Grid.Row="2" Grid.Column="0"
+               Style="{StaticResource SudokuEntry}"
+                                     Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly70}"
+                   TextColor="{Binding TextColor70}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="70" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer71}" Grid.Row="2" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+                                  Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly71}"
+                   TextColor="{Binding TextColor71}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="71" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer72}" Grid.Row="2" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+                               Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly72}"
+                   TextColor="{Binding TextColor72}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="72" />
+                </Entry.Behaviors>
+            </Entry>
+        </Grid>
+        <Grid Margin="1,1,1,1" ColumnSpacing="1" RowSpacing="1" Grid.Row="3" Grid.Column="2" BackgroundColor="Black" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Entry Text="{Binding Nummer73}" Grid.Row="0" Grid.Column="0"
+                   Style="{StaticResource SudokuEntry}"
+                   Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly73}"
+                   TextColor="{Binding TextColor73}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="73" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer74}" Grid.Row="0" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+                                    Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly74}"
+                   TextColor="{Binding TextColor74}">
+
+
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="74" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer75}" Grid.Row="0" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+               Keyboard="Numeric"
+                IsReadOnly="{Binding ReadOnly75}"
+                   TextColor="{Binding TextColor75}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="75" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer76}" Grid.Row="1" Grid.Column="0" 
+               Style="{StaticResource SudokuEntry}"
+               Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly76}"
+                   TextColor="{Binding TextColor76}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="76" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer77}" Grid.Row="1" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+               Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly77}"
+               TextColor="{Binding TextColor77}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="77" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer78}" Grid.Row="1" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+                Keyboard="Numeric"
+                IsReadOnly="{Binding ReadOnly78}"
+                   TextColor="{Binding TextColor78}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="78" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer79}" Grid.Row="2" Grid.Column="0"
+               Style="{StaticResource SudokuEntry}"
+               Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly79}"
+               TextColor="{Binding TextColor79}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="79" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer80}" Grid.Row="2" Grid.Column="1"
+               Style="{StaticResource SudokuEntry}"
+               Keyboard="Numeric"
+                   IsReadOnly="{Binding ReadOnly80}"
+               TextColor="{Binding TextColor80}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="80" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding Nummer81}" Grid.Row="2" Grid.Column="2"
+               Style="{StaticResource SudokuEntry}"
+               Keyboard="Numeric"
+               IsReadOnly="{Binding ReadOnly81}"
+                   TextColor="{Binding TextColor81}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="80" />
+                </Entry.Behaviors>
+            </Entry>
+        </Grid>
+
+        <Button
+            Text="Start / Reset Values"
+            BackgroundColor="AliceBlue"
+            Command="{Binding StartGameCommand}"
+            Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"
+            >
+
+        </Button>
+        <Button
+            Text="Beenden"
+            BackgroundColor="AliceBlue"
+            Command="{Binding CloseApplikationCommand}"
+            Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1">
+        </Button>
+    </Grid>
+
+</ContentPage>
