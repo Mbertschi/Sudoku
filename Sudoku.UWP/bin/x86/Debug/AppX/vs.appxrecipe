@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Codes\Sudoku\Sudoku\Sudoku.UWP\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-01-19T21:50:53.346</Modified>
+      <Modified>2020-01-23T10:11:41.424</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Codes\Sudoku\Sudoku\Sudoku.UWP\bin\x86\Debug\Sudoku.UWP.exe">
       <PackagePath>entrypoint\Sudoku.UWP.exe</PackagePath>
-      <Modified>2020-01-19T21:50:31.550</Modified>
+      <Modified>2020-01-23T10:11:38.554</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Michi\.nuget\packages\runtime.win10-x86.microsoft.netcore.universalwindowsplatform\6.1.9\runtimes\win10-x86\nativeassets\uap10.0.15138\clrcompression.dll">
       <PackagePath>clrcompression.dll</PackagePath>
@@ -720,7 +720,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Codes\Sudoku\Sudoku\Sudoku\bin\Debug\netstandard2.0\Sudoku.dll">
       <PackagePath>Sudoku.dll</PackagePath>
-      <Modified>2020-01-19T21:50:13.411</Modified>
+      <Modified>2020-01-23T11:41:02.654</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Microsoft\Xamarin\NuGet\win2d.uwp\1.20.0\lib\uap10.0\Microsoft.Graphics.Canvas.winmd">
       <PackagePath>Microsoft.Graphics.Canvas.winmd</PackagePath>
@@ -871,11 +871,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Codes\Sudoku\Sudoku\Sudoku.UWP\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2020-01-19T21:50:31.315</Modified>
+      <Modified>2020-01-23T09:50:15.431</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Codes\Sudoku\Sudoku\Sudoku.UWP\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2020-01-19T21:50:31.316</Modified>
+      <Modified>2020-01-23T09:50:15.432</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17134.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -887,11 +887,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Codes\Sudoku\Sudoku\Sudoku.UWP\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2020-01-19T21:50:47.642</Modified>
+      <Modified>2020-01-23T09:36:28.186</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Codes\Sudoku\Sudoku\Sudoku.UWP\bin\x86\Debug\Core\Sudoku.UWP.exe">
       <PackagePath>Sudoku.UWP.exe</PackagePath>
-      <Modified>2020-01-19T21:50:52.824</Modified>
+      <Modified>2020-01-23T10:11:41.401</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

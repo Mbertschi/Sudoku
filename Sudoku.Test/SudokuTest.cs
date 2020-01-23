@@ -19,7 +19,7 @@ namespace Sudoku.Test
 
 
         [TestMethod]
-        public void AddNummerToSudokuStateTest_SetID_And_Nummer_Zero_Return_EmptyDictionary()
+        public void AddNummerToSudokuStateTest_SetID_And_Nummer_Zero_Return_DictionarySiteOne()
         {
             //Arrange
             testee.SetId(0);
@@ -29,7 +29,7 @@ namespace Sudoku.Test
             this.testee.AddNummerToSudokuState();
 
             //Expect
-            Assert.AreEqual(0, testee.ResetValues().Count());
+            Assert.AreEqual(1, testee.ResetValues().Count());
            
         }
 

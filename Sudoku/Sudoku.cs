@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Sudoku.SudokuRessources;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using Xamarin.Essentials;
 using Xamarin.Forms;
+
 
 namespace Sudoku
 {
     public class Sudoku : ISudoku
     {
-
+        private static Ressources ressources;
         private int _nummer;
         private int _id;
         private Dictionary<int, int> startSudoku = new Dictionary<int, int>();
@@ -89,35 +89,6 @@ namespace Sudoku
         // be displayed in the Grid
         public Dictionary<int, int> StartGame()
         {
-            startSudoku.Clear();
-            startSudoku.Add(1, 3);
-            startSudoku.Add(4, 4);
-            startSudoku.Add(7, 1);
-            startSudoku.Add(9, 7);
-            startSudoku.Add(13, 9);
-            startSudoku.Add(15, 8);
-            startSudoku.Add(25, 4);
-            startSudoku.Add(21, 2);
-            startSudoku.Add(24, 5);
-            startSudoku.Add(30, 8);
-            startSudoku.Add(36, 1);
-            startSudoku.Add(38, 1);
-            startSudoku.Add(40, 8);
-            startSudoku.Add(42, 4);
-            startSudoku.Add(44, 5);
-            startSudoku.Add(46, 5);
-            startSudoku.Add(52, 2);
-            startSudoku.Add(55, 7);
-            startSudoku.Add(57, 6);
-            startSudoku.Add(58, 9);
-            startSudoku.Add(61, 8);
-            startSudoku.Add(67, 7);
-            startSudoku.Add(69, 4);
-            startSudoku.Add(73, 9);
-            startSudoku.Add(75, 3);
-            startSudoku.Add(78, 4);
-            startSudoku.Add(81, 7);
-
             return startSudoku;
         }
 
@@ -138,6 +109,7 @@ namespace Sudoku
         //Viewmodel there set all Values to zero and we can restart with the game.
         public Dictionary<int, int> ResetValues()
         {
+            sudokuState.Add(_id, _nummer);
             return sudokuState;
         }
 
@@ -148,6 +120,18 @@ namespace Sudoku
             bool isDefault = startSudoku.ContainsKey(Id);
             return isDefault;
         }
+
+        // Check wich severty Sudoku you want
+        public void Serverty(string severty)
+        {
+           startSudoku.Clear();
+            foreach(KeyValuePair<int,int> defaultNummers in Ressources.getInstance().GetTemplate(severty))
+            {
+                startSudoku.Add(defaultNummers.Key, defaultNummers.Value);
+            }
+           
+        }
+
 
         public class App : Application
         {

@@ -890,7 +890,7 @@
                IsReadOnly="{Binding ReadOnly81}"
                    TextColor="{Binding TextColor81}">
                 <Entry.Behaviors>
-                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="80" />
+                    <behaviors:EventToCommandBehavior EventName="Focused" Command="{Binding SelectedEntryCommand}" CommandParameter="81" />
                 </Entry.Behaviors>
             </Entry>
         </Grid>
@@ -899,7 +899,7 @@
             Text="Start / Reset Values"
             BackgroundColor="AliceBlue"
             Command="{Binding StartGameCommand}"
-            Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"
+            Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="1"
             >
 
         </Button>
@@ -909,6 +909,73 @@
             Command="{Binding CloseApplikationCommand}"
             Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1">
         </Button>
+
+        <Grid Margin="1,1,1,1" ColumnSpacing="1" RowSpacing="1" Grid.Row="4" Grid.Column="1" BackgroundColor="AliceBlue">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="1*"/>
+              <ColumnDefinition Width="1*"/>
+              <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="1*"/>
+              <RowDefinition Height="1*"/>
+              <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Text="Press a Button befor you Start"
+                TextColor="Black">
+                
+            </Label>
+
+            <Label   Grid.Row=" 1"
+                       Grid.Column="0"
+                     TextColor="Black"
+                       Text="Easy">
+            </Label>
+            <Label Grid.Row=" 1"
+                       Grid.Column="1"
+                   TextColor="Black"
+                       Text="Midel">
+                </Label>
+                <Label
+                    Grid.Row=" 1"
+                    Grid.Column="2"
+                    TextColor="Black"
+                    Text="Hard">
+                </Label>
+
+            <Button 
+            Grid.Column="0"
+            Grid.Row="2"
+            BackgroundColor="Green"
+                Command="{Binding  OnCheckBoxCheckedChangedE}"
+                IsEnabled="{Binding CheckboxEasy}">
+            </Button>
+            <Button
+                Grid.Column="1"
+            Grid.Row="2"
+             BackgroundColor="Yellow"
+                Command="{Binding  OnCheckBoxCheckedChangedM}"
+                IsEnabled="{Binding CheckboxMiddle}">
+            </Button>
+            <Button
+            Grid.Column="2"
+            Grid.Row="2"
+            BackgroundColor="Red" 
+            Command="{Binding  OnCheckBoxCheckedChangedH}" 
+               IsEnabled="{Binding CheckboxMiddle}" >
+                
+            </Button>
+
+
+
+
+            </Grid>
+
     </Grid>
 
 </ContentPage>

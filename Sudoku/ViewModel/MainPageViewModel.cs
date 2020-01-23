@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -9,13 +7,14 @@ namespace Sudoku.ViewModel
     public class MainPageViewModel : ViewModelBase
     {
         private readonly ISudoku sudoku;
+        Dictionary<int, int> SetTheStart = new Dictionary<int, int>();
 
         public MainPageViewModel(ISudoku sudoku)
         {
             this.sudoku = sudoku;
         }
 
-
+        // Close the Applikation
         private ICommand closeApplikationCommand;
         public ICommand CloseApplikationCommand
         {
@@ -28,6 +27,7 @@ namespace Sudoku.ViewModel
 
         }
 
+        // Start the Game 
         private ICommand startGameCommand;
         public ICommand StartGameCommand
         {
@@ -40,6 +40,46 @@ namespace Sudoku.ViewModel
 
         }
 
+        // Load the Middle Sudoku before start
+        private ICommand onCheckBoxCheckedChangedM;
+        public ICommand OnCheckBoxCheckedChangedM
+        {
+
+            get
+            {
+                onCheckBoxCheckedChangedM = new Command(SetMiddelSudoku);
+
+                return onCheckBoxCheckedChangedM;
+            }
+        }
+
+        // Loads the Hard Sudoku before start
+        private ICommand onCheckBoxCheckedChangedH;
+        public ICommand OnCheckBoxCheckedChangedH
+        {
+
+            get
+            {
+                onCheckBoxCheckedChangedH = new Command(SetHardSudoku);
+
+                return onCheckBoxCheckedChangedH;
+            }
+        }
+
+        // Loads the Easy Sudoku before start
+        private ICommand onCheckBoxCheckedChangedE;
+        public ICommand OnCheckBoxCheckedChangedE
+        {
+
+            get
+            {
+                onCheckBoxCheckedChangedE = new Command(SetEasySudoku);
+
+                return onCheckBoxCheckedChangedE;
+            }
+        }
+
+        // Set the Variables on the Field
         private void SetDynamicVariable(int fieldNummer, int Value)
         {
             switch (fieldNummer)
@@ -370,6 +410,8 @@ namespace Sudoku.ViewModel
 
         }
 
+        // Integer can't be emty if e nummer bigger than zero the color
+        // change to black otherwise its the same color like the entrys
         private string BiggerThanZero(int nummer)
         {
             if (nummer > 0)
@@ -383,6 +425,7 @@ namespace Sudoku.ViewModel
 
         }
 
+        // Set the default fiels read only
         private bool DefaultFields(int nummer, int key)
         {
             if (nummer > 0 && sudoku.IsDefault(key))
@@ -395,16 +438,18 @@ namespace Sudoku.ViewModel
             }
         }
 
+        // starts the game 
         private void StartGame()
         {
             ResetValues();
-            Dictionary<int, int> SetTheStart = sudoku.StartGame();
+            SetTheStart = sudoku.StartGame();
             foreach (KeyValuePair<int, int> field in SetTheStart)
             {
                 SetDynamicVariable(field.Key, field.Value);
             }
         }
 
+        // Resets the values there you put it in 
         private void ResetValues()
         {
             Dictionary<int, int> SetResetValues = sudoku.ResetValues();
@@ -415,7 +460,17 @@ namespace Sudoku.ViewModel
             sudoku.ResetValueDicitonary();
         }
 
+        // Resets the default values to start with an Other sudoku
+        private void ResetStartNumbers()
+        {
+            foreach (KeyValuePair<int, int> field in SetTheStart)
+            {
+                SetDynamicVariable(field.Key, 0);
+            }
+        }
 
+
+        // Is the command for the selected Entry
         private ICommand selectedEntryCommand;
         public ICommand SelectedEntryCommand
         {
@@ -428,6 +483,7 @@ namespace Sudoku.ViewModel
 
         }
 
+        // Convert the String id to a Integer and saves in the Sudok Class
         private void SelectEntry(string id)
         {
             sudoku.AddNummerToSudokuState();
@@ -439,13 +495,41 @@ namespace Sudoku.ViewModel
 
 
         }
+
+        // This funktion close the application
         private void CloseApplikation()
         {
+
             this.sudoku.CloseApplikation();
+        }
+
+        // It's load the easy Sudoku
+        private void SetEasySudoku()
+        {
+            ResetStartNumbers();
+            this.sudoku.Serverty("Easy");
+
+        }
+
+        // It load the middle Sudoku
+        private void SetMiddelSudoku()
+        {
+            ResetStartNumbers();
+            this.sudoku.Serverty("Middle");
+
+        }
+
+        // It load the hard Sudoku
+        private void SetHardSudoku()
+        {
+            ResetStartNumbers();
+            this.sudoku.Serverty("Hard");
+
         }
 
 
 
+        // Here are all the bindings for the nummers, colors and defaults
         private int nummer1;
         public int Nummer1
         {
@@ -455,15 +539,15 @@ namespace Sudoku.ViewModel
 
         }
 
-
-
         private int nummer2;
         public int Nummer2
         {
             get { return nummer2; }
-            set { nummer2 = sudoku.EvaluateNumber(value); TextColor2 = BiggerThanZero(nummer2); OnPropertyChanged(); }
-
+            set { nummer2 = sudoku.EvaluateNumber(value); 
+                TextColor2 = BiggerThanZero(nummer2); OnPropertyChanged(); }
+            
         }
+
         private int nummer3;
         public int Nummer3
         {
@@ -471,6 +555,7 @@ namespace Sudoku.ViewModel
             set { nummer3 = sudoku.EvaluateNumber(value); TextColor3 = BiggerThanZero(nummer3); OnPropertyChanged(); }
 
         }
+
         private int nummer4;
         public int Nummer4
         {
@@ -478,6 +563,7 @@ namespace Sudoku.ViewModel
             set { nummer4 = sudoku.EvaluateNumber(value); TextColor4 = BiggerThanZero(nummer4); OnPropertyChanged(); }
 
         }
+
         private int nummer5;
         public int Nummer5
         {
@@ -485,6 +571,7 @@ namespace Sudoku.ViewModel
             set { nummer5 = sudoku.EvaluateNumber(value); TextColor5 = BiggerThanZero(nummer5); OnPropertyChanged(); }
 
         }
+
         private int nummer6;
         public int Nummer6
         {
@@ -492,6 +579,7 @@ namespace Sudoku.ViewModel
             set { nummer6 = sudoku.EvaluateNumber(value); TextColor6 = BiggerThanZero(nummer6); OnPropertyChanged(); }
 
         }
+
         private int nummer7;
         public int Nummer7
         {
@@ -499,12 +587,14 @@ namespace Sudoku.ViewModel
             set { nummer7 = sudoku.EvaluateNumber(value); TextColor7 = BiggerThanZero(nummer7); OnPropertyChanged(); }
 
         }
+
         private int nummer8;
         public int Nummer8
         {
             get { return nummer8; }
             set { nummer8 = sudoku.EvaluateNumber(value); TextColor8 = BiggerThanZero(nummer8); OnPropertyChanged(); }
         }
+
         private int nummer9;
         public int Nummer9
         {
@@ -512,6 +602,7 @@ namespace Sudoku.ViewModel
             set { nummer9 = sudoku.EvaluateNumber(value); TextColor9 = BiggerThanZero(nummer9); OnPropertyChanged(); }
 
         }
+
         private int nummer10;
         public int Nummer10
         {
@@ -519,6 +610,7 @@ namespace Sudoku.ViewModel
             set { nummer10 = sudoku.EvaluateNumber(value); TextColor10 = BiggerThanZero(nummer10); OnPropertyChanged(); }
 
         }
+
         private int nummer11;
         public int Nummer11
         {
@@ -526,6 +618,7 @@ namespace Sudoku.ViewModel
             set { nummer11 = sudoku.EvaluateNumber(value); TextColor11 = BiggerThanZero(nummer11); OnPropertyChanged(); }
 
         }
+
         private int nummer12;
         public int Nummer12
         {
@@ -533,6 +626,7 @@ namespace Sudoku.ViewModel
             set { nummer12 = sudoku.EvaluateNumber(value); TextColor12 = BiggerThanZero(nummer12); OnPropertyChanged(); }
 
         }
+
         private int nummer13;
         public int Nummer13
         {
@@ -540,6 +634,7 @@ namespace Sudoku.ViewModel
             set { nummer13 = sudoku.EvaluateNumber(value); TextColor13 = BiggerThanZero(nummer13); OnPropertyChanged(); }
 
         }
+
         private int nummer14;
         public int Nummer14
         {
@@ -547,6 +642,7 @@ namespace Sudoku.ViewModel
             set { nummer14 = sudoku.EvaluateNumber(value); TextColor14 = BiggerThanZero(nummer14); OnPropertyChanged(); }
 
         }
+
         private int nummer15;
         public int Nummer15
         {
@@ -554,6 +650,7 @@ namespace Sudoku.ViewModel
             set { nummer15 = sudoku.EvaluateNumber(value); TextColor15 = BiggerThanZero(nummer15); OnPropertyChanged(); }
 
         }
+
         private int nummer16;
         public int Nummer16
         {
@@ -561,6 +658,7 @@ namespace Sudoku.ViewModel
             set { nummer16 = sudoku.EvaluateNumber(value); TextColor16 = BiggerThanZero(nummer16); OnPropertyChanged(); }
 
         }
+
         private int nummer17;
         public int Nummer17
         {
@@ -568,6 +666,7 @@ namespace Sudoku.ViewModel
             set { nummer17 = sudoku.EvaluateNumber(value); TextColor17 = BiggerThanZero(nummer17); OnPropertyChanged(); }
 
         }
+
         private int nummer18;
         public int Nummer18
         {
@@ -575,6 +674,7 @@ namespace Sudoku.ViewModel
             set { nummer18 = sudoku.EvaluateNumber(value); TextColor18 = BiggerThanZero(nummer18); OnPropertyChanged(); }
 
         }
+
         private int nummer19;
         public int Nummer19
         {
@@ -582,6 +682,7 @@ namespace Sudoku.ViewModel
             set { nummer19 = sudoku.EvaluateNumber(value); TextColor19 = BiggerThanZero(nummer19); OnPropertyChanged(); }
 
         }
+
         private int nummer20;
         public int Nummer20
         {
@@ -589,6 +690,7 @@ namespace Sudoku.ViewModel
             set { nummer20 = sudoku.EvaluateNumber(value); TextColor20 = BiggerThanZero(nummer20); OnPropertyChanged(); }
 
         }
+
         private int nummer21;
         public int Nummer21
         {
@@ -596,6 +698,7 @@ namespace Sudoku.ViewModel
             set { nummer21 = sudoku.EvaluateNumber(value); TextColor21 = BiggerThanZero(nummer21); OnPropertyChanged(); }
 
         }
+
         private int nummer22;
         public int Nummer22
 
@@ -604,6 +707,7 @@ namespace Sudoku.ViewModel
             set { nummer22 = sudoku.EvaluateNumber(value); TextColor22 = BiggerThanZero(nummer22); OnPropertyChanged(); }
 
         }
+
         private int nummer23;
         public int Nummer23
         {
@@ -611,6 +715,7 @@ namespace Sudoku.ViewModel
             set { nummer23 = sudoku.EvaluateNumber(value); TextColor23 = BiggerThanZero(nummer23); OnPropertyChanged(); }
 
         }
+
         private int nummer24;
         public int Nummer24
         {
@@ -618,6 +723,7 @@ namespace Sudoku.ViewModel
             set { nummer24 = sudoku.EvaluateNumber(value); TextColor24 = BiggerThanZero(nummer24); OnPropertyChanged(); }
 
         }
+
         private int nummer25;
         public int Nummer25
         {
@@ -625,6 +731,7 @@ namespace Sudoku.ViewModel
             set { nummer25 = sudoku.EvaluateNumber(value); TextColor25 = BiggerThanZero(nummer25); OnPropertyChanged(); }
 
         }
+
         private int nummer26;
         public int Nummer26
         {
@@ -632,6 +739,7 @@ namespace Sudoku.ViewModel
             set { nummer26 = sudoku.EvaluateNumber(value); TextColor26 = BiggerThanZero(nummer26); OnPropertyChanged(); }
 
         }
+
         private int nummer27;
         public int Nummer27
         {
@@ -639,18 +747,21 @@ namespace Sudoku.ViewModel
             set { nummer27 = sudoku.EvaluateNumber(value); TextColor27 = BiggerThanZero(nummer27); OnPropertyChanged(); }
 
         }
+
         private int nummer28;
         public int Nummer28
         {
             get { return nummer28; }
             set { nummer28 = sudoku.EvaluateNumber(value); TextColor28 = BiggerThanZero(nummer28); OnPropertyChanged(); }
         }
+
         private int nummer29;
         public int Nummer29
         {
             get { return nummer29; }
             set { nummer29 = sudoku.EvaluateNumber(value); TextColor29 = BiggerThanZero(nummer29); OnPropertyChanged(); }
         }
+
         private int nummer30;
         public int Nummer30
         {

@@ -1,0 +1,13 @@
+C:\Codes\Sudoku\Sudoku\Sudoku\bin\Debug\netstandard2.0\Sudoku.deps.json
+C:\Codes\Sudoku\Sudoku\Sudoku\bin\Debug\netstandard2.0\Sudoku.dll
+C:\Codes\Sudoku\Sudoku\Sudoku\bin\Debug\netstandard2.0\ref\Sudoku.dll
+C:\Codes\Sudoku\Sudoku\Sudoku\bin\Debug\netstandard2.0\Sudoku.pdb
+C:\Codes\Sudoku\Sudoku\Sudoku\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Codes\Sudoku\Sudoku\Sudoku\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+C:\Codes\Sudoku\Sudoku\Sudoku\obj\Debug\netstandard2.0\Sudoku.AssemblyInfoInputs.cache
+C:\Codes\Sudoku\Sudoku\Sudoku\obj\Debug\netstandard2.0\Sudoku.AssemblyInfo.cs
+C:\Codes\Sudoku\Sudoku\Sudoku\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Codes\Sudoku\Sudoku\Sudoku\obj\Debug\netstandard2.0\Sudoku.dll
+C:\Codes\Sudoku\Sudoku\Sudoku\obj\Debug\netstandard2.0\ref\Sudoku.dll
+C:\Codes\Sudoku\Sudoku\Sudoku\obj\Debug\netstandard2.0\Sudoku.pdb
+C:\Codes\Sudoku\Sudoku\Sudoku\obj\Debug\netstandard2.0\Sudoku.csprojAssemblyReference.cache

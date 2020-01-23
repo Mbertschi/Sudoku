@@ -23,5 +23,7 @@ namespace Sudoku
 
         void ResetValueDicitonary();
 
+        void Serverty(string Serverty);
+
     }
 }
